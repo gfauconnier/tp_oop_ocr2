@@ -2,9 +2,7 @@
 
 class Magicien extends Personnage
 {
-
-  const PERSO_NOMAGIE = 5;
-
+  
   public function endormir($perso)
   {
 

@@ -5,8 +5,8 @@
   <fieldset>
     <label for="name">Nom : <input id="name" type="text" name="nom" maxlength="50" /></label>
     <select class="" name="typechoice">
-      <option value="magicien">Magicien</option>
-      <option value="guerrier">Guerrier</option>
+      <option value="Magicien">Magicien</option>
+      <option value="Guerrier">Guerrier</option>
     </select>
     <input type="submit" value="Créer ce personnage" name="Creer" class="btn"/>
   </fieldset>

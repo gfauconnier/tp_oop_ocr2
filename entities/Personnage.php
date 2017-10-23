@@ -12,6 +12,7 @@ class Personnage
     const PERSO_MORT = 2;
     const PERSO_ATK = 3;
     const PERSO_ENSORC = 4;
+    const PERSO_NOMAGIE = 5;
     const PERSO_ENDORMI = 6;
 
     // constructor
@@ -40,14 +41,12 @@ class Personnage
             $this->id = $id;
         }
     }
-
     public function setNom($nom)
     {
         if (is_string($nom) && strlen($nom) <= 30) {
             $this->nom = $nom;
         }
     }
-
     public function setDegats(int $degats)
     {
         $degats = (int) $degats;

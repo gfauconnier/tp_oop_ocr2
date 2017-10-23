@@ -40,7 +40,11 @@ class PersoManager
             $query = $this->_db->prepare('SELECT id, nom, degats, type, tpsEndormi FROM personnages WHERE '.$selector.' = :val');
             $query->execute(array('val'=>$val));
             $data = $query->fetch(PDO::FETCH_ASSOC);
-            return new Personnage($data);
+            if ($data['type'] == 'Guerrier') {
+                return new Guerrier($data);
+            } else {
+                return new Magicien($data);
+            }
         }
         return false;
     }
@@ -52,7 +56,11 @@ class PersoManager
         $query = $this->_db->query('SELECT id, nom, degats, type, tpsEndormi FROM personnages');
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $perso) {
-            $persos[] = new Personnage($perso);
+          if ($perso['type'] == 'Guerrier') {
+              $persos[] = new Guerrier($perso);
+          } else {
+              $persos[] = new Magicien($perso);
+          }
         }
         return $persos;
     }
