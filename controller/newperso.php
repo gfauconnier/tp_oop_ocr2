@@ -11,16 +11,16 @@ if ((isset($_POST['nom']) && !empty($_POST['nom']))) {
         } else {
             $_SESSION['message'] = $nom.' existe déjà.';
         }
-    } elseif (isset($_POST['Utiliser'])) {
-      $nom = $_POST['choseperso'];
-        $perso = $manager->getPerso($nom);
-        if (!$perso) {
-            $_SESSION['message'] = 'Le personnage n\'existe pas';
-        }
     }
 }
-
-if ($perso) {
+if (isset($_POST['Utiliser'])) {
+    $nom = $_POST['choseperso'];
+    $perso = $manager->getPerso($nom);
+    if (!$perso) {
+        $_SESSION['message'] = 'Le personnage n\'existe pas';
+    }
+}
+if (isset($perso)) {
     $_SESSION['perso'] = $perso;
     header('Location: .');
 }

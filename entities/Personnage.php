@@ -76,7 +76,7 @@ class Personnage
     {
         return $this->degats;
     }
-    public function getTpsEndomi()
+    public function getTpsEndormi()
     {
         return $this->tpsEndormi;
     }
@@ -130,6 +130,6 @@ class Personnage
 
     public function estEndormi()
     {
-        return $this->$tpsEndormi > time();
+        return $this->tpsEndormi > time();
     }
 }

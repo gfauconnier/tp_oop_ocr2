@@ -78,7 +78,7 @@ class PersoManager
     }
 
     // changes the value of the character's degats in the database
-    public function updatePerso(Personnage $perso)
+    public function updatePerso($perso)
     {
         $query = $this->_db->prepare('UPDATE personnages SET tpsEndormi = :tps, degats = :degats WHERE id = :id');
         $query->execute(array('id'=>$perso->getId(),'tps'=>$perso->getTpsEndormi(),'degats'=>$perso->getDegats()));

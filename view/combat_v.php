@@ -6,6 +6,8 @@ if (isset($_SESSION['message'])) {
     unset($_SESSION['message']);
 }
     ?>
+<div class="container">
+
   <form class="" action="" method="post">
     <input type="submit" value="Changer de perso" name="Changer" class="btn"/>
   </form>
@@ -19,7 +21,7 @@ if (isset($_SESSION['message'])) {
   <?php
       foreach ($persos as $personnage) {
           ?>
-    <option value="<?php echo $personnage->getId(); ?>"><?php echo $personnage->getNom(); ?></option>
+    <option value="<?php echo $personnage->getId(); ?>"><?php echo $personnage->getNom().' ('.$personnage->getType().')'; ?></option>
     <?php
       } ?>
     </select>
@@ -28,7 +30,9 @@ if (isset($_SESSION['message'])) {
       <input type="submit" value="Endormir" name="Endormir" class="btn"/>
       <?php } ?>
     <input type="submit" value="Attaquer" name="Attaquer" class="btn"/>
-  </form> <?php
+  </form>
+</div>
+  <?php
   } else {
       echo "Aucun personnages à attaquer.";
   }

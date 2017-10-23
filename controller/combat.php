@@ -1,6 +1,7 @@
 <?php
 
 $perso = $_SESSION['perso'];
+$persos = $manager->getAllPersos();
 
 if (isset($_POST['Changer'])) {
     session_destroy();
@@ -8,7 +9,6 @@ if (isset($_POST['Changer'])) {
 }
 if (isset($_POST['Attaquer']) || isset($_POST['Endormir'])) {
     $perso = $_SESSION['perso'];
-    $persos = $manager->getAllPersos();
     $perso_atk = $manager->getPerso($_POST['select']);
     if (isset($_POST['Attaquer'])) {
       $retour = $perso->frapperPerso($perso_atk);
@@ -36,7 +36,7 @@ if (isset($_POST['Attaquer']) || isset($_POST['Endormir'])) {
       $_SESSION['message'] = 'Vous n\'avez pas de Magie';
       break;
      case Personnage::PERSO_ENSORC:
-      $_SESSION['message'] = 'Vous avez endormi'.$perso_atk->getNom();
+      $_SESSION['message'] = 'Vous avez endormi '.$perso_atk->getNom();
       $manager->updatePerso($perso_atk);
       break;
    }

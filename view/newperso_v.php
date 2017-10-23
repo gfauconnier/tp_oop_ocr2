@@ -1,8 +1,9 @@
 <?php require 'template/head.php';
 ?>
-
+<br><br><br>
 <form class="container" action="" method="post">
   <fieldset>
+    <legend>Nouveau Personnage</legend>
     <label for="name">Nom : <input id="name" type="text" name="nom" maxlength="50" /></label>
     <select class="" name="typechoice">
       <option value="Magicien">Magicien</option>
