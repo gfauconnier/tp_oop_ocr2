@@ -57,11 +57,11 @@ class Personnage
     }
     public function setTpsEndormi($tpsEndormi)
     {
-      $this->tpsEndormi = $tpsEndormi;
+        $this->tpsEndormi = $tpsEndormi;
     }
     public function setType($type)
     {
-      $this->type = $type;
+        $this->type = $type;
     }
 
     //getters
@@ -79,11 +79,11 @@ class Personnage
     }
     public function getTpsEndomi()
     {
-      return $this->tpsEndormi;
+        return $this->tpsEndormi;
     }
     public function getType()
     {
-      return $this->type;
+        return $this->type;
     }
 
     //methods
@@ -91,25 +91,25 @@ class Personnage
     // gets the atout value depending on current degats
     public function getAtout()
     {
-      if ($this->degats >= 0 && $this->degats <= 25) {
-        $atout = 4;
-      } elseif ($this->degats > 25 && $this->degats <= 50) {
-        $atout = 3;
-      } elseif ($this->degats > 50 && $this->degats <= 75) {
-        $atout = 2;
-      } elseif ($this->degats > 75 && $this->degats <= 90) {
-        $atout = 1;
-      } else {
-        $atout = 0;
-      }
-      return $atout;
+        if ($this->degats >= 0 && $this->degats <= 25) {
+            $atout = 4;
+        } elseif ($this->degats > 25 && $this->degats <= 50) {
+            $atout = 3;
+        } elseif ($this->degats > 50 && $this->degats <= 75) {
+            $atout = 2;
+        } elseif ($this->degats > 75 && $this->degats <= 90) {
+            $atout = 1;
+        } else {
+            $atout = 0;
+        }
+        return $atout;
     }
 
     // takes a Personnage as parameter and calls takeDamage of it
     public function frapperPerso(Personnage $perso)
     {
-        if($this->estEndormi()) {
-          return self::PERSO_ENDORMI;
+        if ($this->estEndormi()) {
+            return self::PERSO_ENDORMI;
         }
         if ($perso->getNom() != $this->getNom()) {
             return $perso->takeDamage();
@@ -131,7 +131,6 @@ class Personnage
 
     public function estEndormi()
     {
-      return $this->$tpsEndormi > time();
+        return $this->$tpsEndormi > time();
     }
-
 }

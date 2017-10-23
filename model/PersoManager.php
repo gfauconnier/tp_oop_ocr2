@@ -22,7 +22,7 @@ class PersoManager
     public function persoExists($val)
     {
         $selector = $this->val_type($val);
-        $query = $this->_db->prepare('SELECT id, nom, degats FROM personnages WHERE '.$selector.' = :val');
+        $query = $this->_db->prepare('SELECT id, nom, degats, type, tpsEndormi FROM personnages WHERE '.$selector.' = :val');
         $query->execute(array('val'=>$val));
         $data = $query->fetch();
         if ($data) {
@@ -37,7 +37,7 @@ class PersoManager
     {
         $selector = $this->val_type($val);
         if ($this->persoExists($val)) {
-            $query = $this->_db->prepare('SELECT id, nom, degats FROM personnages WHERE '.$selector.' = :val');
+            $query = $this->_db->prepare('SELECT id, nom, degats, type, tpsEndormi FROM personnages WHERE '.$selector.' = :val');
             $query->execute(array('val'=>$val));
             $data = $query->fetch(PDO::FETCH_ASSOC);
             return new Personnage($data);
@@ -49,7 +49,7 @@ class PersoManager
     public function getAllPersos()
     {
         $persos = [];
-        $query = $this->_db->query('SELECT id, nom, degats FROM personnages');
+        $query = $this->_db->query('SELECT id, nom, degats, type, tpsEndormi FROM personnages');
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $perso) {
             $persos[] = new Personnage($perso);
@@ -58,11 +58,11 @@ class PersoManager
     }
 
     // inserts a new character in databse if it doesn't exist yet
-    public function addPerso($nom)
+    public function addPerso($nom, $type)
     {
         if (!$this->persoExists($nom)) {
-            $query = $this->_db->prepare('INSERT INTO personnages(nom, degats) VALUES(:nom, 0)');
-            $query->execute(array('nom'=>$nom));
+            $query = $this->_db->prepare('INSERT INTO personnages(nom, degats, type, tpsEndormi) VALUES(:nom, 0, :type, 0)');
+            $query->execute(array('nom'=>$nom, 'type'=>$type));
             $perso = $this->getPerso($nom);
             return $perso->getNom().' créé.';
         }
@@ -72,8 +72,8 @@ class PersoManager
     // changes the value of the character's degats in the database
     public function updatePerso(Personnage $perso)
     {
-        $query = $this->_db->prepare('UPDATE personnages SET nom = :nom, degats = :degats WHERE id = :id');
-        $query->execute(array('id'=>$perso->getId(),'nom'=>$perso->getNom(),'degats'=>$perso->getDegats()));
+        $query = $this->_db->prepare('UPDATE personnages SET tpsEndormi = :tps, degats = :degats WHERE id = :id');
+        $query->execute(array('id'=>$perso->getId(),'tps'=>$perso->getTpsEndormi(),'degats'=>$perso->getDegats()));
     }
 
     // removes the character from the database

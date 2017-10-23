@@ -17,8 +17,11 @@ class Magicien extends Personnage
     if($this->estEndormi()) {
       return self::PERSO_ENDORMI;
     }
-    
 
+    $tps = time() + ($this->getAtout() * 6) * 3600;
+    $perso->setTpsEndormi($tps);
+
+    return self::PERSO_ENSORC;
   }
 
 }

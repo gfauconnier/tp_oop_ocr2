@@ -2,10 +2,17 @@
 require 'service/functions.php';
 require 'model/data.php';
 
+if(isset($_SESSION['perso'])) {
+  require 'controller/combat.php';
+}
+else {
+  require 'controller/newperso.php';
+}
 
 
+
+/*
 if (isset($_POST['Changer'])) {
-    echo 'test';
     session_destroy();
     header('Location: .');
 } elseif (isset($_POST['Attaquer'])) {
@@ -57,5 +64,5 @@ if (isset($_POST['Changer'])) {
         header('Location: .');
     }
 }
-
- include 'view/indexv.php';
+*/
+ //include 'view/indexv.php';
