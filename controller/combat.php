@@ -1,7 +1,6 @@
 <?php
 
 $perso = $_SESSION['perso'];
-$persos = $manager->getAllPersos();
 
 if (isset($_POST['Changer'])) {
     session_destroy();
@@ -42,6 +41,7 @@ if (isset($_POST['Attaquer']) || isset($_POST['Endormir'])) {
    }
 }
 
+$persos = $manager->getAllPersos();
 
 
 include 'view/combat_v.php';
